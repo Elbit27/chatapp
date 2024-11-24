@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     # my_apps
     'account',
+    'room',
 ]
 
 MIDDLEWARE = [
@@ -89,9 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',

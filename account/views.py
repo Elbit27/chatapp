@@ -3,7 +3,8 @@ from rest_framework.viewsets import GenericViewSet
 from django.contrib.auth.models import User
 from rest_framework import serializers, permissions, generics
 from dj_rest_auth.views import LogoutView
-import serializers
+from account import serializers
+
 
 class UserViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     queryset = User.objects.all()
