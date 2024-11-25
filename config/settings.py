@@ -1,3 +1,5 @@
+from telnetlib import LOGOUT
+
 from decouple import config
 from pathlib import Path
 
@@ -18,6 +20,10 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/api/v1/rooms/'
+LOGIN_URL = '/api/v1/account/login/'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +38,7 @@ INSTALLED_APPS = [
     # my_apps
     'account',
     'room',
+    'core',
 ]
 
 MIDDLEWARE = [

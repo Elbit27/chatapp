@@ -2,4 +2,49 @@
 
 {% block title %} Sign up | {% endblock %}
 {% block content %}
-{% blockend %}
+<div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Sign up</h1>
+</div>
+
+<form method="post" action="." class="lg:w-1/4 mx-auto">
+    {% csrf_token %}
+
+    <div class="mb-1">
+        <label class="text-white">Username</label>
+        <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Email</label>
+        <input type="text" name="email" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">First name</label>
+        <input type="text" name="first_name" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Last name</label>
+        <input type="text" name="last_name" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Password</label>
+        <input type="password" name="password" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Repeat password</label>
+        <input type="password" name="password2" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+
+
+    {% if request.method == "POST" and serializer.errors %}
+        {% for field in serializer %}
+            {% for error in field.serializer %}
+                <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+                    <p>{{ error|escape }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700" type="submit">Submit</button>
+</form>
+{% endblock %}
