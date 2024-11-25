@@ -4,3 +4,4 @@ dj-rest-auth
 psycopg2-binary
 pillow
 python-decouple
+django-channels
