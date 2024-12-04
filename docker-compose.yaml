@@ -1,0 +1,54 @@
+version: '3.7'
+
+volumes:
+  static:
+  pgdata:
+
+
+services:
+  django_gunicorn:
+    volumes:
+      - static:/static
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/static
+    ports:
+      - '80:80'
+    depends_on:
+      - django_gunicorn
+  redis:
+    image: redis:latest
+    env_file:
+      - ./.env
+    restart: on-failure
+    ports:
+      - '6382:6379'
+  db:
+    image: postgres:latest
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: elburs27
+      POSTGRES_PASSWORD: v58v5723
+      POSTGRES_DB: chatapp_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: on-failure
+    ports:
+      - '5434:5432'
+  project:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver"
+    env_file:
+      - ./.env
+    restart: always
+    depends_on:
+      - db
+      - redis

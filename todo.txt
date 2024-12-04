@@ -1,3 +1,6 @@
-DONE Sending message
-DONE Storing message
-DONE Scrolling to the bottom
+Set redis <-
+-
+
+
+
+Deploy by using docker

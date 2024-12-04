@@ -5,3 +5,6 @@ psycopg2-binary
 pillow
 python-decouple
 django-channels
+redis
+django-redis
+gunicorn
